@@ -24,15 +24,19 @@ define([
 		* Visualizador Inicia parametros de configuración y llamada a datos
 		*/
 		initialize: function() {
-			this.svg = this.options && this.options.svg ? this.options.svg : document.createElementNS('http://www.w3.org/2000/svg', "g");
 			this.data = this.options && this.options.data ? this.options.data : [];
-			this.tooltip = this.options && this.options.tooltip ? this.options.tooltip : new VistaToolTip();
 
 			// Binding de this (esta vista) al contexto de las funciones indicadas
 			_.bindAll(this,"render", "tootipMessage", "seleccionTipoIE", "seleccionArea")
 
 			// Alias a this para ser utilizado en callback functions
 			var self = this; 
+
+			// Vista con tooltip para mostrar ficha de establecimiento
+			this.tooltip = new VistaToolTip();
+	  		// Reescribe función generadora del mensaje en tooltip
+			this.tooltip.message = this.tootipMessage;
+
 			
 			// Configuración de espacio de despliegue de contenido en pantalla
 			this.margin = {top: 20, right: 20, bottom: 30, left: 200},
@@ -54,14 +58,12 @@ define([
 				"costo_estimado" : "Costo estimado (arancel x duracion)"
 			};
 
-			this.svg = this.svg
+			this.svg = d3.select(this.el)
 				.attr("width", this.width + this.margin.left + this.margin.right)
 			    .attr("height", this.height + this.margin.top + this.margin.bottom)
 			  .append("g")
 			    .attr("transform", "translate(" + this.margin.left + "," + this.margin.top + ")");
 
-	  		// Reescribe función generadora del mensaje en tooltip
-			this.tooltip.message = this.tootipMessage;
 
 
 			// Limpia Data

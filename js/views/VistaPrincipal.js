@@ -4,7 +4,7 @@ define([
 	'backbone',
 	'jquery',
 	'd3',
-	'views/VistaLoading',
+	'VistaLoading',
 	'views/Visualizador',
 	'views/VistaPanelTipoIE',
 	'views/VistaPanelSelectorAreas',
@@ -34,7 +34,7 @@ define([
 
 	    	var datafile = "data/empleabilidad2.txt";
 
-	    	this.visHTMLorSVG = "HTML" // HTML o SVG - Para crear elemento contenedor
+	    	this.visIsSVG = true // SVG or HTML - Para crear elemento contenedor de la visualización principal
 
 			// Carga de datos
 	    	this.vistaLoading = new VistaLoading({el:this.el});
@@ -58,23 +58,28 @@ define([
 			// Contenedor del panel de áreas
 			var elSelectorAreas = d3.select(this.el).append("div").attr("id", "panelSelectorAreas")[0][0];
 
-			// SVG - contenedor principal de elementos visuales
-			this.svg = d3.select(this.el).append("svg")
+			// Genera contenedor de la visualización principal
+			// ------------------------------------------------
+			// Selector (d3) al elemento del DOM que contiene la visualización principal
+			var visContainer;
+			if (this.visIsSVG) {
+				// SVG - contenedor principal de elementos visuales es objeto SVG
+				visContainer = d3.select(this.el).append("svg");
+			} else {
+				// HTML - contenedor principales es elemento DIV (HTML)
+				visContainer = d3.select(this.el).append("div");
+			}
+			visContainerElement = visContainer[0][0]  // <div> o <svg>
 
 			// Contenedor del panel de tipos
 			var elSelectorTipoIEs = d3.select(this.el).append("div")
 				.attr("id", "panelSelectorTipos")
 				.style("padding-left", "200px")[0][0];
 
-
-			// Vista con tooltip para mostrar ficha de establecimiento
-			this.tooltip = new VistaToolTip();
-
 			// Genera nueva vista que  despliega visualización
-			this.vizView = new Visualizador({
-				svg: this.svg,
+			this.visualizador = new Visualizador({
+				el: visContainerElement,
 				data: this.data,
-				tooltip : this.tooltip
 			});
 
 			// Cea un nuevo panel para seleccionar tipos de IEs ("Universidades", "Institutos Profesionales", ...)

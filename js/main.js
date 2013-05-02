@@ -12,6 +12,7 @@ require.config({
     bootstrap: 'libs/bootstrap/js/bootstrap.min',
     VistaToolTip: 'libs/tideD3/VistaToolTip',
     VistaEjesXY: 'libs/tideD3/VistaEjesXY',
+    VistaLoading: 'libs/tideD3/VistaLoading',
     templates: '../templates'
     
   },
