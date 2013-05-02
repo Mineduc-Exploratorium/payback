@@ -1,5 +1,5 @@
 // Filename: app.js
-define(["views/pbVistaPrincipal"], 
+define(["views/VistaPrincipal"], 
 	function(VistaPrincipal) {
 		var initialize = function() {
 			vista = new VistaPrincipal({el:"#mainvisualization"});

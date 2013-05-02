@@ -7,8 +7,8 @@ define([
 	'VistaEjesXY',
 	], function(_, Backbone,$, d3, VistaToolTip, VistaEjesXY){
 
-	var VistaVizPayback = Backbone.View.extend(
-		/** @lends VistaVizPayback.prototype */
+	var Visualizador = Backbone.View.extend(
+		/** @lends Visualizador.prototype */
 		{
 
 		/**
@@ -21,7 +21,7 @@ define([
 		* @param {array} options.data arreglo con datos (cada dato es un objeto con atributos)
 		* @param {d3.select()} options.svg elemento SVG utilizado como contenedor del gráfico
 		* @param {Backbone.View} options.tooltip vista utilizada como tooltip
-		* VistaVizPayback Inicia parametros de configuración y llamada a datos
+		* Visualizador Inicia parametros de configuración y llamada a datos
 		*/
 		initialize: function() {
 			this.svg = this.options && this.options.svg ? this.options.svg : document.createElementNS('http://www.w3.org/2000/svg', "g");
@@ -309,6 +309,6 @@ define([
 
 	});
   
-  return VistaVizPayback;
+  return Visualizador;
 });
 

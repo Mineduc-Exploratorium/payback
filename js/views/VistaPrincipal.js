@@ -1,15 +1,16 @@
+// VisPayback
 define([
 	'underscore',
 	'backbone',
 	'jquery',
 	'd3',
 	'views/VistaLoading',
-	'views/VistaVizPayback',
+	'views/Visualizador',
 	'views/VistaPanelTipoIE',
 	'views/VistaPanelSelectorAreas',
 	'VistaToolTip',
 
-	], function(_, Backbone,$, d3, VistaLoading,VistaVizPayback, VistaPanelTipoIE,VistaPanelSelectorAreas, VistaToolTip){
+	], function(_, Backbone,$, d3, VistaLoading,Visualizador, VistaPanelTipoIE,VistaPanelSelectorAreas, VistaToolTip){
 
 
 	var VistaPrincipal = Backbone.View.extend(
@@ -31,10 +32,14 @@ define([
 	    	// Auxiliar para referirse a this al interior de callback functions
 	    	var self = this
 
+	    	var datafile = "data/empleabilidad2.txt";
+
+	    	this.visHTMLorSVG = "HTML" // HTML o SVG - Para crear elemento contenedor
+
 			// Carga de datos
 	    	this.vistaLoading = new VistaLoading({el:this.el});
 			this.vistaLoading.show();
-			d3.tsv("data/empleabilidad2.txt", function(data) {
+			d3.tsv(datafile, function(data) {
 				self.vistaLoading.hide();
 
 				self.data = data;
@@ -66,7 +71,7 @@ define([
 			this.tooltip = new VistaToolTip();
 
 			// Genera nueva vista que  despliega visualización
-			this.vizView = new VistaVizPayback({
+			this.vizView = new Visualizador({
 				svg: this.svg,
 				data: this.data,
 				tooltip : this.tooltip
