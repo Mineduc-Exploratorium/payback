@@ -8,9 +8,8 @@ define([
 	'views/Visualizador',
 	'views/VistaPanelTipoIE',
 	'views/VistaPanelSelectorAreas',
-	'VistaToolTip',
 
-	], function(_, Backbone,$, d3, VistaLoading,Visualizador, VistaPanelTipoIE,VistaPanelSelectorAreas, VistaToolTip){
+	], function(_, Backbone,$, d3, VistaLoading,Visualizador, VistaPanelTipoIE,VistaPanelSelectorAreas){
 
 
 	var VistaPrincipal = Backbone.View.extend(
@@ -85,15 +84,15 @@ define([
 			// Cea un nuevo panel para seleccionar tipos de IEs ("Universidades", "Institutos Profesionales", ...)
 	    	// -------------------------------------------------
 			// Genera contenido del panel y escucha a evento con tipo seleccionado
-			this.vistaSelectorTipoIE= new VistaPanelTipoIE({el:elSelectorTipoIEs, colorScale: this.vizView.getColorScale()});
-			this.vistaSelectorTipoIE.on("seleccionTipoIE", this.vizView.seleccionTipoIE);
+			this.vistaSelectorTipoIE= new VistaPanelTipoIE({el:elSelectorTipoIEs, colorScale: this.visualizador.getColorScale()});
+			this.vistaSelectorTipoIE.on("seleccionTipoIE", this.visualizador.seleccionTipoIE);
 
 
 			// Crea un nuevo panel para seleccionar áreas
 			// -----------------------------------------
 			// Genera el contenido del panel y escucha a evento con area seleccionada
-			this.vistaSelectorAreas = new VistaPanelSelectorAreas({el: "#panelSelectorAreas", areas: this.vizView.getAreas()})
-			this.vistaSelectorAreas.on("seleccionArea", this.vizView.seleccionArea);
+			this.vistaSelectorAreas = new VistaPanelSelectorAreas({el: "#panelSelectorAreas", areas: this.visualizador.getAreas()})
+			this.vistaSelectorAreas.on("seleccionArea", this.visualizador.seleccionArea);
 
 
 		}

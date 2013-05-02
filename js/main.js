@@ -10,7 +10,7 @@ require.config({
     text: 'libs/require/text',
     d3: 'libs/d3/d3.AMD',
     bootstrap: 'libs/bootstrap/js/bootstrap.min',
-    VistaToolTip: 'libs/tideD3/VistaToolTip',
+    VistaTooltip: 'libs/tideD3/VistaTooltip',
     VistaEjesXY: 'libs/tideD3/VistaEjesXY',
     VistaLoading: 'libs/tideD3/VistaLoading',
     templates: '../templates'

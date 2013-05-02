@@ -3,9 +3,9 @@ define([
 	'backbone',
 	'jquery',
 	'd3',
-	'VistaToolTip',
+	'VistaTooltip',
 	'VistaEjesXY',
-	], function(_, Backbone,$, d3, VistaToolTip, VistaEjesXY){
+	], function(_, Backbone,$, d3, VistaTooltip, VistaEjesXY){
 
 	var Visualizador = Backbone.View.extend(
 		/** @lends Visualizador.prototype */
@@ -33,7 +33,7 @@ define([
 			var self = this; 
 
 			// Vista con tooltip para mostrar ficha de establecimiento
-			this.tooltip = new VistaToolTip();
+			this.tooltip = new VistaTooltip();
 	  		// Reescribe función generadora del mensaje en tooltip
 			this.tooltip.message = this.tootipMessage;
 
